@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.form-box{
+    width: 950px;
+    height: 575px;
+    position: relative;
+    margin: 1.6% auto;
+    background-color: #ffffff;
+    padding: 2px;
+    border-radius: 3.3rem;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.button-box{
+    width:  350px;
+    margin: 30px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #e0e0e0;
+    border-radius: 30px;
+}
+
+.toggle-btn{
+    padding: 10px 15px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    
+}
+
+.toggle-btn {
+    color: black;
+}
+
+.toggle-btn.active {
+    color: white;
+}
+
+
+#elegir{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 87px;
+    height: 100%;
+    background: #072539;
+    border-radius: 30px;
+    transition: 0.8s;
+}
+
+.input-group{
+    top: 120px;
+    position: absolute;
+    width: 280px;
+    transition: 0.8s;
+}
+
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid #072539;
+    outline: none;
+    background: transparent;
+}
+
+.submit-btn{
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background-color: #072539;
+    border: 0px;
+    outline: none;
+    border-radius: 30px;
+    color: #ffffff;
+}
+
+#Buscar{
+    left: 335px;
+}
+
+#Crear{
+    left: 2000px;
+}
+
+#Actualizar{
+    left: 2000px;
+}
+
+#Borrar{
+    left: 2000px;
+}
+
+.textarea {
+    position: relative;
+    background-color: white;
+    border: 2px solid #072539;
+    border-radius: 10px;
+    width: 280px;
+    height: 120px;
+  }
+  
+  

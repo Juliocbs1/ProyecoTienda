@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Proceso de Venta</title>
+	<link href="/css/StyleVentas.css" rel="stylesheet" type="text/css"   />
+</head>
+
+<body>
+	<div class="form-box">
+		<div class="wrapper">
+			<div class="progress-container">
+				<div class="progress-bar">
+					<div class="step active">1</div>
+					<div class="connector"></div>
+					<div class="step">2</div>
+					<div class="connector"></div>
+					<div class="step">3</div>
+					<div class="connector"></div>
+					<div class="step">4</div>
+				</div>
+			</div>
+			<div class="container">
+
+				<div class="page" id="page1">
+					<!-- Contenido de la página 1 -->
+					<div class="form-label">
+						<h3>Ingresar cedula del cliente</h3>
+
+						<input type="number" class="input-field" id="nombre" placeholder="Cedula" name="cedula_ini"
+							required>
+						<button>Nueva venta</button> <button onclick="nextPage()">Siguiente</button> <br><br>
+						<p th:text="${mensaje}"></p>
+
+						<laber class="btn2">¿No existe el cliente?</laber>
+						<label for="crearCliente" class="btn" id="addFields">Registrar cliente</label>
+
+						<div id="extraFields" class="hidden">
+							<center>
+
+								<input type="number" class="input-field" id="campo1" placeholder="Cedula" name="cedula">
+								<input type="text" class="input-field" id="campo2" placeholder="Nombre completo"
+									name="nombre_cl">
+								<button type="submit">Registrar</button>
+							</center>
+
+						</div>
+
+					</div>
+				</div>
+				<center>
+					<div class="page" id="page2">
+						<!-- Contenido de la página 2 -->
+						<h3>Seleccionar los productos y añadir la cantidad</h3>
+						<input type="text" id="searchInput" placeholder="Buscar producto"><br><br>
+						<div class="containerL" contenteditable="false">
+							<form th:action="@{/venta/seleccion_productos}" method="post">
+								<table id="productTable">
+									<thead>
+										<tr>
+											<th>Producto</th>
+											<th>Precio</th>
+											<th>Cantidad</th>
+											<th>Seleccionar</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="productodto:${lista_producto_all}">
+											<td th:text="${productodto.nom_producto}"></td>
+											<td th:text="${productodto.precio}"></td>
+											<td><input type="number" th:name="'cantidad_' + ${productodto.id_producto}">
+											</td>
+											<td><input type="checkbox" name="opcion"
+													th:value="${productodto.id_producto}"></input></td>
+										</tr>
+										<!-- Agrega más filas con datos de productos -->
+									</tbody>
+								</table>
+
+						</div>
+						<button>Nueva venta</button>
+						<button type="submit">Siguiente</button>
+						</form>
+					</div>
+				</center>
+
+				<center>
+					<div class="page" id="page3">
+						<!-- Contenido de la página 3 -->
+						<h2>Facturacion</h2>
+						<p>Nombre: Kevin Peña</p>
+						<div class="containerLa" contenteditable="false">
+							<table id="productTable">
+								<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Precio</th>
+										<th>Cantidad</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Cuaderno</td>
+										<td>100000</td>
+										<td>15</td>
+									</tr>
+									<tr>
+										<td>Lapiz</td>
+										<td>10000</td>
+										<td>10</td>
+									</tr>
+									<!-- Agrega más filas con datos de productos -->
+								</tbody>
+							</table>
+						</div>
+						<p>Total: <span id="totalAmount"></span></p>
+						<input type="number" class="quantity-input2" id="cashInput" placeholder="Ingrese el efectivo">
+						<p>Cambio: <span id="changeAmount"></span></p>
+						<button>Nueva venta</button> <button onclick="nextPage()">Confirmar</button>
+					</div>
+				</center>
+
+				<center>
+					<div class="page" id="page4">
+						<div class="invoice-container">
+							<h2>PAPELERIA ROSITA FACTURA</h2>
+							<div class="invoice-header">
+								<p>Factura</p>
+								<p>Fecha: <span id="currentDate"></span></p>
+								<p>Cliente: <span id="clientName">Nombre del cliente</span></p>
+								<p>Cédula: <span id="clientId">1234567890</span></p>
+								<p>Empresa: Papelería de Rosita</p>
+								<p>Hora: <span id="currentTime"></span></p>
+							</div>
+							<div class="invoice-table">
+								<table>
+									<thead>
+										<tr>
+											<th>NOMBRE PRODUCTO</th>
+											<th>PRECIO UNIDAD</th>
+											<th>CANTIDAD</th>
+											<th>TOTAL</th>
+										</tr>
+									</thead>
+									<tbody id="invoiceTableBody"></tbody>
+								</table>
+							</div>
+							<div class="invoice-totals">
+								<p>Total:<span id="totalAmount"></span></p>
+								<p>Efectivo:<span id="cashAmount"></span></p>
+								<p>Cambio:<span id="changeAmount"></span></p>
+
+							</div>
+
+						</div>
+						<button>Nueva venta</button> <button onclick="nextPage()">Finalizar</button>
+					</div>
+				</center>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/VentasJavaScript.js}"> </script>
+
+</body>
+
+</html>

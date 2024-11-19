@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Paso 1</title>
+	<link href="/css/StyleVentaPasos.css" rel="stylesheet" type="text/css"   />
+</head>
+
+<body>
+	<div class="form-box">
+		<div class="wrapper">
+			<div class="progress-container">
+				<div class="progress-bar">
+					<div class="step active">1</div>
+					<div class="connector"></div>
+					<div class="step">2</div>
+					<div class="connector"></div>
+					<div class="step">3</div>
+					<div class="connector"></div>
+					<div class="step">4</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="page" id="page1">
+					<!-- Contenido de la página 1 -->
+					<div class="form-label">
+						<h3>Ingresar cedula del cliente</h3>
+						<form th:action="@{/venta/verificar_cliente}" method="post">
+							<input type="number" class="input-field" id="nombre" placeholder="Cedula" name="cedula_ini"
+								required>
+							<br>
+							
+							<a th:href="@{/}" target="_blank" class="btnVentana">Nueva venta</a>  <button type="submit">Siguiente</button>
+
+						</form>
+
+
+
+						<laber class="btn2">¿No existe el cliente?</laber>
+						<label for="crearCliente" class="btn" id="addFields">Registrar cliente</label>
+
+						<div id="extraFields" class="hidden">
+							<center>
+								<form th:action="@{/venta/ingresar_cliente}" method="post">
+									<input type="number" class="input-field" id="campo1" placeholder="Cedula"
+										name="cedula">
+									<input type="text" class="input-field" id="campo2" placeholder="Nombre completo"
+										name="nombre_cl">
+									<button type="submit">Registrar</button>
+								</form>
+							</center>
+						</div>
+						<br><br>
+						<p th:text="${mensaje}"></p>
+						<br>
+						<textarea class="textarea" th:text="${mensaje_advertencia}" disabled="true"></textarea>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/VentasJavaScriptPasos.js}"> </script>
+</body>
+
+</html>

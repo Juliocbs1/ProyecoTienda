@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Paso 3</title>
+	<link href="/css/StyleVentaPasos.css" rel="stylesheet" type="text/css"   />
+</head>
+
+<body>
+	<div class="form-box">
+		<div class="wrapper">
+			<div class="progress-container">
+				<div class="progress-bar">
+					<div class="step active">1</div>
+					<div class="connector active"></div>
+					<div class="step active">2</div>
+					<div class="connector active"></div>
+					<div class="step active">3</div>
+					<div class="connector"></div>
+					<div class="step">4</div>
+				</div>
+			</div>
+			<center>
+				<div class="container">
+					<div class="page" id="page3">
+						<!-- Contenido de la página 3 -->
+						<h2>Facturacion</h2>
+						<p th:text="${mensaje}"></p>
+						<p th:text="${mensaje2}"></p>
+						<div class="containerLa" contenteditable="false">
+							<table id="productTable">
+								<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Precio</th>
+										<th>Cantidad</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="productoventa:${lista_producto_venta_all}">
+										<td th:text="${productoventa.nom_producto}"></td>
+										<td th:text="${productoventa.precio_uni}"></td>
+										<td th:text="${productoventa.cantidad}"></td>
+
+									</tr>
+									<!-- Agrega más filas con datos de productos -->
+								</tbody>
+							</table>
+						</div>
+						<br><br>
+						<form th:action="@{/venta/factura}" method="post">
+							<p>Total: <span id="totalAmount" th:text="${total}"></span></p>
+							<input type="number" class="quantity-input2" id="cashInput"
+								placeholder="Ingrese el efectivo" name="efectivo" required>
+							<br><br>
+
+							<a th:href="@{/}" target="_blank" class="btnVentana">Nueva venta</a> <button type="submit">Confirmar</button>
+						</form>
+					</div>
+				</div>
+			</center>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/VentasJavaScriptPasos.js}"> </script>
+</body>
+
+</html>

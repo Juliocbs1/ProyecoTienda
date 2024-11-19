@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+    <link href="/css/styleClientes.css"  rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="elegir"></div>
+                <center>
+                    <button type="button" id="btnBuscar" class="toggle-btn active" onclick="changeActive('btnBuscar')">Buscar</button>
+                    <button type="button" id="btnCrear" class="toggle-btn" onclick="changeActive('btnCrear')">Crear</button>
+                    <button type="button" id="btnActualizar" class="toggle-btn" onclick="changeActive('btnActualizar')">Actualizar</button>
+                    <button type="button" id="btnBorrar" class="toggle-btn" onclick="changeActive('btnBorrar')">Eliminar</button>                    
+                </center>
+            </div>
+            <form id="Buscar" class="input-group"  th:action="@{/cliente/cliente_id}"  method="post" >
+                <h3>Ingresa la cedula del cliente</h3><br>
+                <input type="number" class="input-field" placeholder="Cedula" name="id_cliente" max="1999999999" min="1" required><br><br>
+                <button type="submit" class="submit-btn">Buscar</button><br><br><br>
+               <textarea class="textarea"  th:text="${resultado}"></textarea>
+            </form>
+            <form id="Crear" class="input-group"  th:action="@{/cliente/ingresar_cliente}"  method="post" >
+                <h3>Ingresa los datos del cliente</h3><br>
+                <input type="number" class="input-field" placeholder="Cedula" name="id_cliente"  max="1999999999" min="1" required>
+                <input type="text" class="input-field" placeholder="Nombre Completo" name="nom_cliente" required><br><br>
+                <button type="submit" class="submit-btn">Crear</button>
+                  
+            </form>
+            <form id="Actualizar" class="input-group" th:action="@{/cliente/actualizar_cliente}"  method="post">
+                <h3>Ingresa los datos del cliente</h3><br>
+                <input type="number" class="input-field" placeholder="Cedula" name="id_cliente"  max="1999999999" min="1" required>
+                <input type="text" class="input-field" placeholder="Nombre Completo" name="nom_cliente" required><br><br>
+                <button type="submit" class="submit-btn">Actualizar</button>
+            </form>
+            <form id="Borrar" class="input-group" th:action="@{/cliente/eliminar_cliente}"  method="post">
+                <h3>Ingresa la cedula del cliente</h3><br>
+                <input type="number" class="input-field" placeholder="Cedula" name="id_cliente"  max="1999999999" min="1" required><br><br>
+                <button type="submit" class="submit-btn">Borrar</button>
+            </form>
+        </div>
+        
+    </div>
+    <script>
+        var x = document.getElementById("Buscar");
+var y = document.getElementById("Crear");
+var z = document.getElementById("Actualizar");
+var a = document.getElementById("Borrar");
+var b = document.getElementById("elegir");
+
+function changeActive(id){
+    clearActiveClass();
+    document.getElementById(id).classList.add("active");
+    switch(id) {
+        case "btnBuscar":
+            x.style.left = "335px";
+            y.style.left = "2000px";
+            z.style.left = "2000px";
+            a.style.left = "2000px";
+            b.style.left = "0px";
+            break;
+        case "btnCrear":
+            x.style.left = "-2000px";
+            y.style.left = "335px";
+            z.style.left = "2000px";
+            a.style.left = "2000px";
+            b.style.left = "77px";
+            break;
+        case "btnActualizar":
+            x.style.left = "-2000px";
+            y.style.left = "-2000px";
+            z.style.left = "335px";
+            a.style.left = "2000px";
+            b.style.left = "163px";
+            break;
+        case "btnBorrar":
+            x.style.left = "-2000px";
+            y.style.left = "-2000px";
+            z.style.left = "-2000px";
+            a.style.left = "335px";
+            b.style.left = "257px";
+            break;
+    }
+}
+
+function clearActiveClass() {
+    var buttons = document.getElementsByClassName("toggle-btn");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
+}
+
+    </script>
+</body>
+</html>

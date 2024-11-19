@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Inventario</title>
+	<link href="/css/styleInventario.css" rel="stylesheet" type="text/css"   />
+</head>
+
+<body>
+	<div class="main-container">
+		<div class="container-wrapper">
+			<div class="container">
+				<br>
+				<center>
+
+					<div class="container2">
+						<br>
+						<center>
+							<div class="title-box">
+								<h1>Producto</h1>
+							</div>
+						</center>
+						<div class="form-box">
+							<div class="button-box2">
+								<div id="elegir2"></div>
+								<center>
+									<button type="button" id="btnBuscar2" class="toggle-btn active"
+										onclick="changeActiveProducto('btnBuscar2')">Buscar</button>
+									<button type="button" id="btnCrear2" class="toggle-btn"
+										onclick="changeActiveProducto('btnCrear2')">Crear</button>
+									<button type="button" id="btnActualizar2" class="toggle-btn"
+										onclick="changeActiveProducto('btnActualizar2')">Actualizar</button>
+									<button type="button" id="btnBorrar2" class="toggle-btn"
+										onclick="changeActiveProducto('btnBorrar2')">Eliminar</button>
+								</center>
+							</div>
+							<form id="Buscar2" class="input-group" th:action="@{/producto_inventario/producto_id}"
+								method="post">
+								<h3>Seleccione el producto</h3><br>
+								<select class="input-field" name="id_producto" required>
+									<option th:each="productodto : ${lista_producto_all}"
+										th:value="${productodto.id_producto}" th:text="${productodto.nom_producto}">
+									</option>
+								</select>
+									<br><br>
+								<button type="submit" class="submit-btn">Buscar</button><br><br>
+								<textarea class="textarea" th:text="${resultado}" disabled></textarea>
+							</form>
+							<form id="Crear2" class="input-group" th:action="@{/producto_inventario/ingresar_producto}"
+								method="post">
+								<h4>Ingresa los datos del producto</h4><br>
+
+								<input type="text" class="input-field" placeholder="Nombre" name="nom_producto"
+									required>
+									<p>Selecciona el proveedor</p>
+								<select class="input-field" name="id_proveedor" required>
+									
+									<option th:each="proveedordto : ${lista_proveedor_all}"
+										th:value="${proveedordto.id_proveedor}" th:text="${proveedordto.nom_proveedor}">
+									</option>
+								</select>
+								<input type="number" class="input-field" placeholder="Precio" name="precio"
+									required><br><br>
+								<button type="submit" class="submit-btn">Crear</button><br>
+								<center>
+									<h4 style="color: brown;"></h4>
+								</center>
+							</form>
+							<form id="Actualizar2" class="input-group"
+								th:action="@{/producto_inventario/actualizar_producto}" method="post">
+								<h4>Ingresa o selecciona los datos del producto</h4>
+								<p>Selecciona el producto</p>
+								<select class="input-field" name="id_producto" required>
+									<option th:each="productodto : ${lista_producto_all}"
+										th:value="${productodto.id_producto}" th:text="${productodto.nom_producto}">
+									</option>
+								</select>
+
+								<input type="text" class="input-field" placeholder="Nombre" name="nom_producto"
+									required>
+								<p>Selecciona el proveedor</p>
+								<select class="input-field" name="id_proveedor" required>
+									
+									<option th:each="proveedordto : ${lista_proveedor_all}"
+										th:value="${proveedordto.id_proveedor}" th:text="${proveedordto.nom_proveedor}">
+									</option>
+								</select>
+								<input type="number" class="input-field" placeholder="Precio" name="precio"
+									required><br><br>
+								<button type="submit" class="submit-btn">Actualizar</button><br>
+								<center>
+									<h4 style="color: brown;"></h4>
+								</center>
+							</form>
+							<form id="Borrar2" class="input-group" th:action="@{/producto_inventario/eliminar_producto}"
+								method="post">
+								<h3>Selecciona el producto</h3><br>
+								<select class="input-field" name="id_producto" required>
+									<option th:each="productodto : ${lista_producto_all}"
+										th:value="${productodto.id_producto}" th:text="${productodto.nom_producto}">
+									</option>
+								</select>
+									<br><br>
+								<button type="submit" class="submit-btn">Borrar</button><br>
+								<center>
+									<h4 style="color: brown;"></h4>
+								</center>
+							</form>
+						</div>
+					</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" th:src="@{/js/InventarioJavaScript.js}"> </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas</title>
+    <link href="/css/styleConsultas.css"  rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="elegir"></div>
+                <center>
+                    <button type="button" id="btnCliente" class="toggle-btn active" onclick="changeActive('btnCliente')">Cliente</button>
+                    <button type="button" id="btnProveedores" class="toggle-btn" onclick="changeActive('btnProveedores')">Proveedores</button>
+                    <button type="button" id="btnProductos" class="toggle-btn" onclick="changeActive('btnProductos')">Productos</button>
+                    <button type="button" id="btnPedidos" class="toggle-btn" onclick="changeActive('btnPedidos')">Pedidos</button>   
+                    <button type="button" id="btnInventario" class="toggle-btn" onclick="changeActive('btnInventario')">Inventario</button>  
+                    <button type="button" id="btnVentas" class="toggle-btn" onclick="changeActive('btnVentas')">Ventas</button>                  
+                </center>
+            </div>
+            <center>
+            <form id="Clientes" class="input-group">
+                <h3>Consultar todos los clientes</h3>
+                <br>
+                <div class="containerL" contenteditable="false">
+                <center>
+                <table> 
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="clientedto:${lista_cliente_all}">
+                           <td th:text="${clientedto.id_cliente}"></td>
+                           <td th:text="${clientedto.nom_cliente}"></td>
+                        </tr>
+                    </tbody>	
+                </table>
+                </center>
+                </div>
+            </form>
+            </center>
+            <center>
+            <form id="Proveedores" class="input-group">
+                <h3>Consultar todos los proveedores</h3>
+                <br>
+                <div class="containerL" contenteditable="false">
+                <center>
+                <table> 
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre_PROVEEDOR</th>
+                            <th>TELEFONO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="proveedordto:${lista_proveedor_all}">
+                           <td th:text="${proveedordto.id_proveedor}"></td>
+                           <td th:text="${proveedordto.nom_proveedor}"></td>
+                           <td th:text="${proveedordto.telefono}"></td>
+                        </tr>
+                    </tbody>	
+                </table>
+            </center>
+                </div>
+            </form>
+        </center>
+        <center>
+            <form id="Productos" class="input-group">
+                <h3>Consultar todos los productos</h3>
+                <br>
+                <div class="containerL" contenteditable="false">
+                <center>
+                <table> 
+                    <thead>
+                        <tr>
+                            <th>ID_PRODUCTO</th>
+                            <th>ID_PROVEEDOR</th>
+                            <th>NOMBRE_PRODUCTO</th>
+                            <th>PRECIO</th>
+                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr th:each="productodto:${lista_producto_all}">
+                           <td th:text="${productodto.id_producto}"></td>
+                           <td th:text="${productodto.id_proveedor}"></td>
+                           <td th:text="${productodto.nom_producto}"></td>
+                           <td th:text="${productodto.precio}"></td>
+                        </tr>
+                    </tbody>	
+                </table>
+            </center>
+                </div>
+            </form>
+        </center>
+        <center>
+            <form id="Pedidos" class="input-group">
+                <h3>Consultar todos los pedidos</h3>
+                <br>
+                <div class="containerL" contenteditable="false">
+                <center>
+                <table> 
+                    <thead>
+                        <tr>
+                            <th>ID_Pedido</th>
+                            <th>ID_Proveedor</th>
+                            <th>Id_Producto</th>
+                            <th>Costo</th>
+                            <th>Cantidad</th>
+                            <th>Fecha_Pedido_Entrega</th>
+                            <th>Pedido Especial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr th:each="pedidodto:${lista_pedido_all}">
+                           <td th:text="${pedidodto.id_pedido}"></td>
+                           <td th:text="${pedidodto.id_proveedor}"></td>
+                           <td th:text="${pedidodto.id_producto}"></td>
+                           <td th:text="${pedidodto.costo}"></td>
+                           <td th:text="${pedidodto.cantidad}"></td>
+                           <td th:text="${pedidodto.fecha_pedido_entrega}"></td>
+                           <td th:text="${pedidodto.pedido_especial}"></td>
+                        </tr>
+                    </tbody>	
+                </table>
+            </center>
+                </div>
+            </form>
+        </center>
+        <center>
+            <form id="Inventario" class="input-group">
+                <h3>Consultar todos los inventarios</h3>
+                <br>
+                <div class="containerL" contenteditable="false">
+                <center>
+                <table> 
+                    <thead>
+                        <tr>
+             
+                            <th>Nombre de producto</th>
+                            <th>Cantidad</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr th:each="producto_cantidad:${lista_inventario}">
+                           <td th:text="${producto_cantidad.nombre_producto}"></td>
+                           <td th:text="${producto_cantidad.cantidad}"></td>
+        
+                        </tr>
+                    </tbody>	
+                </table>
+            </center>
+                </div>
+            </form>
+        </center>
+        <center>
+            <form id="Ventas" class="input-group">
+                <h3>Consultar todos las ventas</h3>
+                <br>
+                <div class="containerL" contenteditable="false">
+                <center>
+                <table> 
+                    <thead>
+                        <tr>
+                            <th>ID-Venta</th>
+                            <th>ID-Cliente</th>
+                            <th>Total</th>
+                            <th>Cambio</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                          <tr th:each="ventadto:${lista_venta_all}">
+                           <td th:text="${ventadto.id_venta}"></td>
+                           <td th:text="${ventadto.id_cliente}"></td>
+                            <td th:text="${ventadto.total}"></td>
+                             <td th:text="${ventadto.cambio}"></td>
+                              <td th:text="${ventadto.fecha}"></td>
+        
+                        </tr>
+                    </tbody>	
+                </table>
+            </center>
+                </div>
+            </form>
+        </center>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/ConsultasJavaScript.js}"> </script>
+</body>
+</html>

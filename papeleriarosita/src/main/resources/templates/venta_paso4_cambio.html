@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Paso 4</title>
+	<link href="/css/StyleVentaPasos.css" rel="stylesheet" type="text/css"   />
+</head>
+
+<body>
+	<div class="form-box">
+		<div class="wrapper">
+			<div class="progress-container">
+				<div class="progress-bar">
+					<div class="step active">1</div>
+					<div class="connector active"></div>
+					<div class="step active">2</div>
+					<div class="connector active"></div>
+					<div class="step active">3</div>
+					<div class="connector active"></div>
+					<div class="step active">4</div>
+				</div>
+			</div>
+			<center>
+				<div class="container">
+					<div class="page" id="page4">
+						<div class="invoice-container">
+							<h2>PAPELERIA ROSITA FACTURA</h2>
+							<div class="invoice-header">
+								<p>Factura</p>
+								<p>Fecha: <span id="currentDate2"></span></p>
+								<p>Cliente: <span id="clientName" th:text="${nom_cliente}"></span></p>
+								<p>Cédula: <span id="clientId" th:text="${cedula}"></span></p>
+								<p>Empresa: Papelería de Rosita</p>
+								<p>Hora: <span id="currentTime2"></span></p>
+							</div>
+							<div class="invoice-table">
+								<table>
+									<thead>
+										<tr>
+											<th>NOMBRE PRODUCTO</th>
+											<th>PRECIO UNIDAD</th>
+											<th>CANTIDAD</th>
+											
+										</tr>
+									</thead>
+									<tbody id="invoiceTableBody">
+										<tr th:each="productoventa:${lista_producto_venta_all}">
+											<td th:text="${productoventa.nom_producto}"></td>
+											<td th:text="${productoventa.precio_uni}"></td>
+											<td th:text="${productoventa.cantidad}"></td>
+
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+							<div class="invoice-totals">
+								<p>Total:<span id="totalAmount" th:text="${total}"></span></p>
+								<p>Efectivo:<span id="cashAmount" th:text="${efectivo}"></span></p>
+								<p>Cambio:<span id="changeAmount" th:text="${cambio}"></span></p>
+
+							</div>
+
+						</div>
+						<a th:href="@{/}" target="_blank" class="btnVentana">Nueva venta</a> <a href="/venta/terminar_venta"><button >Finalizar</button></a>
+					</div>
+				</div>
+		</div>
+		</center>
+	</div>
+	<script type="text/javascript" th:src="@{/js/VentasJavaScriptPasos.js}"> </script>
+	<script>
+
+		function finalizarVenta() {
+			alert("Venta finalizada");
+			redirectToStep(1); // Redirigir al paso 1 después de la alerta
+		}
+
+		window.addEventListener('load', function () {
+			displayDateTime();
+		});
+
+		function displayDateTime() {
+			const currentDate = new Date();
+			const options = {year: 'numeric', month: 'long', day: 'numeric'};
+			const formattedDate = currentDate.toLocaleDateString('es-ES', options);
+			const formattedTime = currentDate.toLocaleTimeString('es-ES', {hour12: false});
+
+			document.getElementById('currentDate2').textContent = formattedDate;
+			document.getElementById('currentTime2').textContent = formattedTime;
+		}
+	</script>
+</body>
+
+</html>

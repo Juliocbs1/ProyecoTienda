@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Inicial</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"   />
+</head>
+<body>
+    <div class="menuToggle"></div>
+    <div class="sidebar">
+        <ul>
+            <li class="logo" style="--bg:#ffffff;">
+                <a>
+                    <div class="icon"><ion-icon name="storefront-outline"></ion-icon></div>
+                    <div class="text">Tienda de Rosita</div>
+                </a>
+            </li>
+            <div class="Menulist">
+                <li style="--bg:#006c7a;">
+                    <a href="javascript:void(0);" onclick="loadPage('/venta');">
+                        <div class="icon"><ion-icon name="card-outline"></ion-icon></div>
+                        <div class="text">Ventas</div>
+                    </a>
+                </li>
+                <li style="--bg:#006c7a;">
+                    <a href="javascript:void(0);" onclick="loadPage('/cliente');" th:if="${ver_cliente}">
+                        <div class="icon"><ion-icon name="person-outline"></ion-icon></div>
+                        <div class="text">Cliente</div>
+                    </a>
+                </li>
+                
+                <li style="--bg:#006c7a;">
+                    <a href="javascript:void(0);" onclick="loadPage('/producto_inventario');" th:if="${ver_pro_inv}">
+                        <div class="icon"><ion-icon name="cube-outline"></ion-icon></div>
+                        <div class="text">Inventario</div>
+                    </a>
+                </li>
+                <li style="--bg:#006c7a;">
+                    <a href="javascript:void(0);" onclick="loadPage('/proveedor');" th:if="${ver_proveedor}">
+                        <div class="icon"><ion-icon name="pricetags-outline"></ion-icon>                        </div>
+                        <div class="text">Proveedor</div>
+                    </a>
+                </li>
+                <li style="--bg:#006c7a;">
+                    <a href="javascript:void(0);" onclick="loadPage('/consultas');" th:if="${ver_consultas}">
+                        <div class="icon"><ion-icon name="receipt-outline"></ion-icon></div>
+                        <div class="text">Consultas</div>
+                    </a>
+                </li>
+                   <li style="--bg:#006c7a;">
+                    <a href="/venta/exportarExcel"  th:if="${ver_consultas}">
+                        <div class="icon"><ion-icon name="document-attach-outline"></ion-icon></div>
+                        <div class="text">Exportar Excel</div>
+                    </a>
+                </li>
+                
+                
+                
+            </div>
+            <div class="bottom">
+                <li style="--bg:#ffffff;">
+                    <a href="#">
+                        <div class="icon">
+                            <div class="imgBx">
+                                <img src="./img/logoBlanco.svg">
+                            </div>
+                        </div>
+                        <div class="text">FenixCode</div>
+                    </a>
+                </li>
+            </div>
+            
+        </ul>
+        
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" ></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"> </script>
+    <iframe id="content-frame" style="width:93%; height:100%; border:none; position:absolute; right:0;">
+</body>
+</html>
